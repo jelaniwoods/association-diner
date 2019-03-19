@@ -1,27 +1,55 @@
-<%= form_with(model: query, local: true) do |form| %>
-  <% if query.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(query.errors.count, "error") %> prohibited this query from being saved:</h2>
+<% was_validated = query.errors.any? %>
 
-      <ul>
-      <% query.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<% form_html_options = { novalidate: true, class: "mb-3" } %>
+
+<%= form_for(query, html: form_html_options) do |f| %>
+  <div class="form-group">
+    <% level_id_class = "form-control" %>
+    <% level_id_was_invalid = query.errors.include?(:level_id) %>
+
+    <% if was_validated %>
+      <% if level_id_was_invalid %>
+        <% level_id_class << " is-invalid" %>
+      <% else %>
+        <% level_id_class << " is-valid" %>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <% end %>
 
-  <div class="field">
-    <%= form.label :level_id %>
-    <%= form.number_field :level_id %>
+    <%= f.label :level_id %>
+
+    <%= f.number_field :level_id, class: level_id_class, placeholder: "Enter level" %>
+    <% if level_id_was_invalid %>
+      <% query.errors.full_messages_for(:level_id).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :input %>
-    <%= form.text_field :input %>
+  <div class="form-group">
+    <% input_class = "form-control" %>
+    <% input_was_invalid = query.errors.include?(:input) %>
+
+    <% if was_validated %>
+      <% if input_was_invalid %>
+        <% input_class << " is-invalid" %>
+      <% else %>
+        <% input_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :input %>
+
+    <%= f.text_field :input, class: input_class, placeholder: "Enter input" %>
+    <% if input_was_invalid %>
+      <% query.errors.full_messages_for(:input).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

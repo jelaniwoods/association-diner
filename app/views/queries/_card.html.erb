@@ -1,0 +1,38 @@
+<div class="card mb-3">
+  <h2 class="card-header h4">
+    Query #<%= query.id %>
+  </h2>
+
+  <div class="card-body">
+    <dl class="mb-1">
+      <dt>Level</dt>
+      <dd><%= query.level_id %></dd>
+
+      <dt>Input</dt>
+      <dd><%= query.input %></dd>
+
+    </dl>
+
+    <div class="row">
+      <div class="col">
+        <%= link_to_show_or_back query, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-outline-secondary" %>
+      </div>
+
+      <div class="col">
+        <%= link_to edit_query_url(query), class: "btn btn-outline-secondary" do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+      </div>
+
+      <div class="col">
+        <%= link_to query, method: :delete, data: { confirm: "Do you really want to delete this query?" }, class: "btn btn-outline-secondary" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    Last updated <%= time_ago_in_words(query.updated_at) %> ago
+  </div>
+</div>

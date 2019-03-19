@@ -1,0 +1,35 @@
+<div class="card mb-3">
+  <h2 class="card-header h4">
+    Level #<%= level.id %>
+  </h2>
+
+  <div class="card-body">
+    <dl class="mb-1">
+      <dt>Number</dt>
+      <dd><%= level.number %></dd>
+
+    </dl>
+
+    <div class="row">
+      <div class="col">
+        <%= link_to_show_or_back level, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-outline-secondary" %>
+      </div>
+
+      <div class="col">
+        <%= link_to edit_level_url(level), class: "btn btn-outline-secondary" do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+      </div>
+
+      <div class="col">
+        <%= link_to level, method: :delete, data: { confirm: "Do you really want to delete this level?" }, class: "btn btn-outline-secondary" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    Last updated <%= time_ago_in_words(level.updated_at) %> ago
+  </div>
+</div>

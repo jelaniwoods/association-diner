@@ -1,1 +1,1 @@
-json.array! @levels, partial: "levels/level", as: :level
+json.array! @levels, partial: 'levels/level', as: :level

@@ -1,22 +1,31 @@
-<%= form_with(model: level, local: true) do |form| %>
-  <% if level.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(level.errors.count, "error") %> prohibited this level from being saved:</h2>
+<% was_validated = level.errors.any? %>
 
-      <ul>
-      <% level.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<% form_html_options = { novalidate: true, class: "mb-3" } %>
+
+<%= form_for(level, html: form_html_options) do |f| %>
+  <div class="form-group">
+    <% number_class = "form-control" %>
+    <% number_was_invalid = level.errors.include?(:number) %>
+
+    <% if was_validated %>
+      <% if number_was_invalid %>
+        <% number_class << " is-invalid" %>
+      <% else %>
+        <% number_class << " is-valid" %>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <% end %>
 
-  <div class="field">
-    <%= form.label :number %>
-    <%= form.number_field :number %>
+    <%= f.label :number %>
+
+    <%= f.number_field :number, class: number_class, placeholder: "Enter number" %>
+    <% if number_was_invalid %>
+      <% level.errors.full_messages_for(:number).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

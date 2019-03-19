@@ -1,14 +1,5 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Level:</strong>
-  <%= @query.level_id %>
-</p>
-
-<p>
-  <strong>Input:</strong>
-  <%= @query.input %>
-</p>
-
-<%= link_to 'Edit', edit_query_path(@query) %> |
-<%= link_to 'Back', queries_path %>
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <%= render object: @query, partial: "card", as: :query %>
+  </div>
+</div>

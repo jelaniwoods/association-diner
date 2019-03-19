@@ -1,6 +1,17 @@
-<h1>Editing Query</h1>
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <div class="card">
+      <h2 class="card-header h4">
+        Edit Query #<%= @query.id %>
+      </h2>
 
-<%= render 'form', query: @query %>
+      <div class="card-body">
+        <%= render "form", query: @query %>
 
-<%= link_to 'Show', @query %> |
-<%= link_to 'Back', queries_path %>
+        <%= link_to :back, class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-chevron-left fa-fw"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

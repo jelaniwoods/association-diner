@@ -1,14 +1,5 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Query:</strong>
-  <%= @answer.query_id %>
-</p>
-
-<p>
-  <strong>Text:</strong>
-  <%= @answer.text %>
-</p>
-
-<%= link_to 'Edit', edit_answer_path(@answer) %> |
-<%= link_to 'Back', answers_path %>
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <%= render object: @answer, partial: "card", as: :answer %>
+  </div>
+</div>

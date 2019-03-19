@@ -1,6 +1,17 @@
-<h1>Editing Answer</h1>
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <div class="card">
+      <h2 class="card-header h4">
+        Edit Answer #<%= @answer.id %>
+      </h2>
 
-<%= render 'form', answer: @answer %>
+      <div class="card-body">
+        <%= render "form", answer: @answer %>
 
-<%= link_to 'Show', @answer %> |
-<%= link_to 'Back', answers_path %>
+        <%= link_to :back, class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-chevron-left fa-fw"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

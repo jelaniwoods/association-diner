@@ -1,27 +1,69 @@
-<p id="notice"><%= notice %></p>
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1 class="display-4">
+      Levels
 
-<h1>Levels</h1>
+      <%= link_to new_level_path, class: "btn btn-lg btn-outline-secondary" do %>
+        <i class="fas fa-plus fa-fw"></i>
+      <% end %>
+    </h1>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Number</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<!-- Table example -->
 
-  <tbody>
-    <% @levels.each do |level| %>
-      <tr>
-        <td><%= level.number %></td>
-        <td><%= link_to 'Show', level %></td>
-        <td><%= link_to 'Edit', edit_level_path(level) %></td>
-        <td><%= link_to 'Destroy', level, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row">
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>
+              Number
+            </th>
 
-<br>
+            <th>
+              Actions
+            </th>
+          </tr>
+        </thead>
 
-<%= link_to 'New Level', new_level_path %>
+        <tbody>
+          <%= render collection: @levels, partial: "table_row", as: :level %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Card deck example -->
+
+<% @levels.each_slice(3) do |slice| %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card-deck">
+      <%= render collection: slice, partial: "card", as: :level %>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<!-- List group example -->
+
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <div class="card">
+      <h1 class="card-header h4 d-flex align-items-center justify-content-between">
+        Levels
+
+        <%= link_to new_level_path, class: "btn btn-sm btn-outline-secondary" do %>
+          <i class="fas fa-plus fa-fw"></i>
+        <% end %>
+      </h1>
+
+      <div class="list-group list-group-flush">
+        <%= render collection: @levels, partial: "list_item", as: :level %>
+      </div>
+    </div>
+  </div>
+</div>

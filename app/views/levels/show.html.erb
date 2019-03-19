@@ -1,9 +1,5 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Number:</strong>
-  <%= @level.number %>
-</p>
-
-<%= link_to 'Edit', edit_level_path(@level) %> |
-<%= link_to 'Back', levels_path %>
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <%= render object: @level, partial: "card", as: :level %>
+  </div>
+</div>
