@@ -6,7 +6,7 @@
 #  text       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  query_id   :integer
+#  level_id   :integer
 #
 
 class Answer < ApplicationRecord
