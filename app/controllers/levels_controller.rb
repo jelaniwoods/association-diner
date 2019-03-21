@@ -8,7 +8,8 @@ class LevelsController < ApplicationController
 
   # GET /levels/1
   def show
-    @selections = @level.selections 
+    @selections = @level.selections
+    @query = Query.new 
   end
 
   # GET /levels/new
