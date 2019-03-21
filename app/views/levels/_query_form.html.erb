@@ -1,7 +1,6 @@
 <% was_validated = query.errors.any? %>
 
 <% form_html_options = { novalidate: true, class: "mb-3" } %>
-Enter guess
 <%= form_for(query, html: form_html_options) do |f| %>
   <div class="form-group">
 
