@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-  before_action :set_answer, only: [:show, :edit, :update, :destroy]
+  before_action :set_answer, only: %i[show edit update destroy]
 
   # GET /answers
   def index
@@ -7,8 +7,7 @@ class AnswersController < ApplicationController
   end
 
   # GET /answers/1
-  def show
-  end
+  def show; end
 
   # GET /answers/new
   def new
@@ -16,15 +15,14 @@ class AnswersController < ApplicationController
   end
 
   # GET /answers/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /answers
   def create
     @answer = Answer.new(answer_params)
 
     if @answer.save
-      redirect_to @answer, notice: 'Answer was successfully created.'
+      redirect_to @answer, notice: "Answer was successfully created."
     else
       render :new
     end
@@ -33,7 +31,7 @@ class AnswersController < ApplicationController
   # PATCH/PUT /answers/1
   def update
     if @answer.update(answer_params)
-      redirect_to @answer, notice: 'Answer was successfully updated.'
+      redirect_to @answer, notice: "Answer was successfully updated."
     else
       render :edit
     end
@@ -42,17 +40,18 @@ class AnswersController < ApplicationController
   # DELETE /answers/1
   def destroy
     @answer.destroy
-    redirect_to answers_url, notice: 'Answer was successfully destroyed.'
+    redirect_to answers_url, notice: "Answer was successfully destroyed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_answer
-      @answer = Answer.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def answer_params
-      params.require(:answer).permit(:query_id, :text)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_answer
+    @answer = Answer.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def answer_params
+    params.require(:answer).permit(:query_id, :text)
+  end
 end

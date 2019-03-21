@@ -1,5 +1,5 @@
 class QueriesController < ApplicationController
-  before_action :set_query, only: [:show, :edit, :update, :destroy]
+  before_action :set_query, only: %i[show edit update destroy]
 
   # GET /queries
   def index
@@ -7,8 +7,7 @@ class QueriesController < ApplicationController
   end
 
   # GET /queries/1
-  def show
-  end
+  def show; end
 
   # GET /queries/new
   def new
@@ -16,15 +15,14 @@ class QueriesController < ApplicationController
   end
 
   # GET /queries/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /queries
   def create
     @query = Query.new(query_params)
 
     if @query.save
-      redirect_to @query, notice: 'Query was successfully created.'
+      redirect_to @query, notice: "Query was successfully created."
     else
       render :new
     end
@@ -33,7 +31,7 @@ class QueriesController < ApplicationController
   # PATCH/PUT /queries/1
   def update
     if @query.update(query_params)
-      redirect_to @query, notice: 'Query was successfully updated.'
+      redirect_to @query, notice: "Query was successfully updated."
     else
       render :edit
     end
@@ -42,17 +40,18 @@ class QueriesController < ApplicationController
   # DELETE /queries/1
   def destroy
     @query.destroy
-    redirect_to queries_url, notice: 'Query was successfully destroyed.'
+    redirect_to queries_url, notice: "Query was successfully destroyed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_query
-      @query = Query.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def query_params
-      params.require(:query).permit(:level_id, :input)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_query
+    @query = Query.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def query_params
+    params.require(:query).permit(:level_id, :input)
+  end
 end

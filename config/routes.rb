@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root "levels#index"
   resources :queries
   resources :answers
   resources :levels

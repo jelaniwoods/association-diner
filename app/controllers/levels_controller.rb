@@ -1,5 +1,5 @@
 class LevelsController < ApplicationController
-  before_action :set_level, only: [:show, :edit, :update, :destroy]
+  before_action :set_level, only: %i[show edit update destroy]
 
   # GET /levels
   def index
@@ -7,8 +7,7 @@ class LevelsController < ApplicationController
   end
 
   # GET /levels/1
-  def show
-  end
+  def show; end
 
   # GET /levels/new
   def new
@@ -16,15 +15,14 @@ class LevelsController < ApplicationController
   end
 
   # GET /levels/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /levels
   def create
     @level = Level.new(level_params)
 
     if @level.save
-      redirect_to @level, notice: 'Level was successfully created.'
+      redirect_to @level, notice: "Level was successfully created."
     else
       render :new
     end
@@ -33,7 +31,7 @@ class LevelsController < ApplicationController
   # PATCH/PUT /levels/1
   def update
     if @level.update(level_params)
-      redirect_to @level, notice: 'Level was successfully updated.'
+      redirect_to @level, notice: "Level was successfully updated."
     else
       render :edit
     end
@@ -42,17 +40,18 @@ class LevelsController < ApplicationController
   # DELETE /levels/1
   def destroy
     @level.destroy
-    redirect_to levels_url, notice: 'Level was successfully destroyed.'
+    redirect_to levels_url, notice: "Level was successfully destroyed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_level
-      @level = Level.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def level_params
-      params.require(:level).permit(:number)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_level
+    @level = Level.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def level_params
+    params.require(:level).permit(:number)
+  end
 end
