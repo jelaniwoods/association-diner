@@ -7,7 +7,14 @@
     <dl class="mb-1">
       <dt>Number</dt>
       <dd><%= level.number %></dd>
+      <div class="">
+        <% @selections.each do |selection| %>
+          <div class="<%= selection.item.class.to_s.downcase %>">
 
+            <%= selection.item.id %>
+          </div>
+        <% end %>
+      </div>
     </dl>
 
     <div class="row">

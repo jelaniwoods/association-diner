@@ -10,4 +10,5 @@
 
 class Level < ApplicationRecord
   has_many :queries, dependent: :destroy
+  has_many :selections, :dependent => :destroy
 end

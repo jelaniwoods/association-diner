@@ -7,7 +7,9 @@ class LevelsController < ApplicationController
   end
 
   # GET /levels/1
-  def show; end
+  def show
+    @selections = @level.selections 
+  end
 
   # GET /levels/new
   def new
