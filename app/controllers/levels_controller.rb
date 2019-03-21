@@ -1,5 +1,5 @@
 class LevelsController < ApplicationController
-  before_action :set_level, only: %i[show edit update destroy]
+  before_action :set_level, only: %i[show edit store update destroy]
 
   # GET /levels
   def index
@@ -9,9 +9,18 @@ class LevelsController < ApplicationController
   # GET /levels/1
   def show
     @selections = @level.selections
-    @query = Query.new 
+    @query = Query.new
   end
 
+  def results
+    @query = cookies[:query]
+  end
+
+  def store
+    @query = params.fetch(:query)
+    cookies[:query] = @query
+    redirect_to "/levels/#{@level.id}/results", notice: "yup"
+  end
   # GET /levels/new
   def new
     @level = Level.new
