@@ -22,7 +22,7 @@ class QueriesController < ApplicationController
     @query = Query.new(query_params)
 
     if @query.save
-      redirect_to @query, notice: "Query was successfully created."
+      redirect_back fallback_location: @query, notice: "Query was successfully created."
     else
       render :new
     end
