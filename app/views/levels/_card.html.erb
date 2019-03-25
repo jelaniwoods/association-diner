@@ -24,19 +24,19 @@
     </div>
     <div class="row">
       <div class="col">
-        <%= link_to_show_or_back level, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-outline-secondary" %>
+        <%#= link_to_show_or_back level, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-outline-secondary" %>
       </div>
 
       <div class="col">
-        <%= link_to edit_level_url(level), class: "btn btn-outline-secondary" do %>
+        <%#= link_to edit_level_url(level), class: "btn btn-outline-secondary" do %>
           <i class="fas fa-edit"></i>
-        <% end %>
+        <%# end %>
       </div>
 
       <div class="col">
-        <%= link_to level, method: :delete, data: { confirm: "Do you really want to delete this level?" }, class: "btn btn-outline-secondary" do %>
+        <%#= link_to level, method: :delete, data: { confirm: "Do you really want to delete this level?" }, class: "btn btn-outline-secondary" do %>
           <i class="fas fa-trash-alt"></i>
-        <% end %>
+        <%# end %>
       </div>
     </div>
   </div>

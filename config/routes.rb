@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "levels#index"
+  root "levels#show"
   resources :queries
   resources :answers
   resources :levels

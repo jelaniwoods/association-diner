@@ -59,7 +59,11 @@ class LevelsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_level
-    @level = Level.find(params[:id])
+    if params[:id].nil?
+      @level = Level.find(1) # TODO change to cookie thing maybe
+    else
+      @level = Level.find(params[:id])
+    end
   end
 
   # Only allow a trusted parameter "white list" through.
