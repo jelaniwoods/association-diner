@@ -1,5 +1,5 @@
 class LevelsController < ApplicationController
-  before_action :set_level, only: %i[show edit store update destroy]
+  before_action :set_level, only: %i[show edit store results update destroy]
 
   # GET /levels
   def index
@@ -13,7 +13,16 @@ class LevelsController < ApplicationController
   end
 
   def results
+    @selections = @level.selections
     @query = cookies[:query]
+    @res = false
+    case @query
+    when "Plate.where(id: 2)", "Plate.find(2)", "Plate.where(:id => 2)",
+      "Plate.where({:id => 2})", "Plate.find_by(id: 2)", "Plate.find_by(:id => 2)"
+      @res = true
+    else
+      @res = false
+    end
   end
 
   def store
