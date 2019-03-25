@@ -16,10 +16,16 @@ class LevelsController < ApplicationController
     @selections = @level.selections
     @query = cookies[:query]
     @res = false
+    # Selected One object
+    # Selected Collection
     case @query
-    when "Plate.where(id: 2)", "Plate.find(2)", "Plate.where(:id => 2)",
-      "Plate.where({:id => 2})", "Plate.find_by(id: 2)", "Plate.find_by(:id => 2)"
+    when "Plate.where(id: 2).first", "Plate.where(id: 2)[0]"
+       "Plate.where(:id => 2).first", "Plate.where({:id => 2}).first",
+       "Plate.find_by(id: 2)", "Plate.find_by(:id => 2)", "Plate.find(2)",
       @res = true
+    when "Plate.whete(id: 2)", "Plate.where(:id => 2)",
+      "Plate.where({:id => 2})"
+      # TODO Selected Collection
     else
       @res = false
     end
