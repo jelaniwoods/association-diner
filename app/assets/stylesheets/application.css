@@ -49,6 +49,10 @@
    animation-delay: 0s, .5s;
  }
 
+.selected {
+  border: 1px solid black;  
+}
+
  @keyframes strobeStart {
    0% {
      transform:  skew(0deg,0deg) scaleY(1) ;

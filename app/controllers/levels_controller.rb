@@ -10,6 +10,10 @@ class LevelsController < ApplicationController
   def show
     @selections = @level.selections
     @query = Query.new
+    @selections.each do |selection|
+      Selection.update(selection.id, selected: false)
+    end
+
   end
 
   def results
@@ -34,8 +38,18 @@ class LevelsController < ApplicationController
     when "Plate.find(2)"
       @res = true
       Selection.update(2, selected: true)
-    when "Plate.where(id: 2)", "Plate.where(:id => 2)",
-      "Plate.where({:id => 2})"
+    when "Plate.where(id: 2)"
+      @selections.each do |selection|
+        Selection.update(selection.id, selected: false)
+      end
+    when "Plate.where(:id => 2)"
+      @selections.each do |selection|
+        Selection.update(selection.id, selected: false)
+      end
+    when "Plate.where({:id => 2})"
+      @selections.each do |selection|
+        Selection.update(selection.id, selected: false)
+      end
       # TODO Select Collection
     else
       @res = false
