@@ -10,7 +10,12 @@ namespace :dev do
     Selection.create(item_id: plate1.id, level_id: level.id)
     Selection.create(item_id: plate2.id, level_id: level.id)
 
-    Answer.create(text: "Plate.where(id: 2)", level_id: level.id)
+    Answer.create(text: "Plate.where(id: 2)[0]", level_id: level.id)
+    Answer.create(text: "Plate.where({:id => 2}).first", level_id: level.id)
+    Answer.create(text: "Plate.find_by(:id => 2)", level_id: level.id)
+    Answer.create(text: "Plate.where(id: 2).first", level_id: level.id)
+    Answer.create(text: "Plate.find_by(id: 2)", level_id: level.id)
+    Answer.create(text: "Plate.find(2)", level_id: level.id)
   end
 
 end

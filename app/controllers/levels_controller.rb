@@ -19,14 +19,24 @@ class LevelsController < ApplicationController
     # Selected One object
     # Selected Collection
     case @query
-    when "Plate.where(id: 2).first", "Plate.where(id: 2)[0]",
-       "Plate.where(:id => 2).first", "Plate.where({:id => 2}).first",
-       "Plate.find_by(id: 2)", "Plate.find_by(:id => 2)", "Plate.find(2)",
+    when "Plate.where(id: 2).first"
+      @res = true
+    when "Plate.where(id: 2)[0]"
+      @res = true
+    when "Plate.where(:id => 2).first"
+      @res = true
+    when "Plate.where({:id => 2}).first"
+      @res = true
+    when "Plate.find_by(id: 2)"
+      @res = true
+    when "Plate.find_by(:id => 2)"
+      @res = true
+    when "Plate.find(2)"
       @res = true
       Selection.update(2, selected: true)
     when "Plate.where(id: 2)", "Plate.where(:id => 2)",
       "Plate.where({:id => 2})"
-      # TODO Selected Collection
+      # TODO Select Collection
     else
       @res = false
     end
