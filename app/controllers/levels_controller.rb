@@ -19,11 +19,12 @@ class LevelsController < ApplicationController
     # Selected One object
     # Selected Collection
     case @query
-    when "Plate.where(id: 2).first", "Plate.where(id: 2)[0]"
+    when "Plate.where(id: 2).first", "Plate.where(id: 2)[0]",
        "Plate.where(:id => 2).first", "Plate.where({:id => 2}).first",
        "Plate.find_by(id: 2)", "Plate.find_by(:id => 2)", "Plate.find(2)",
       @res = true
-    when "Plate.whete(id: 2)", "Plate.where(:id => 2)",
+      Selection.update(2, selected: true)
+    when "Plate.where(id: 2)", "Plate.where(:id => 2)",
       "Plate.where({:id => 2})"
       # TODO Selected Collection
     else
@@ -84,5 +85,9 @@ class LevelsController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def level_params
     params.require(:level).permit(:number)
+  end
+
+  def set_selected(selection)
+    selection.update(selected: true)
   end
 end
