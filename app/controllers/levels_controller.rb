@@ -23,34 +23,17 @@ class LevelsController < ApplicationController
     # Selected One object
     # Selected Collection
     case @query
-    when "Plate.where(id: 2).first"
-      @res = true
-    when "Plate.where(id: 2)[0]"
-      @res = true
-    when "Plate.where(:id => 2).first"
-      @res = true
-    when "Plate.where({:id => 2}).first"
-      @res = true
-    when "Plate.find_by(id: 2)"
-      @res = true
-    when "Plate.find_by(:id => 2)"
-      @res = true
-    when "Plate.find(2)"
+    when "Plate.where(id: 2).first", "Plate.where(id: 2)[0]",
+      "Plate.where(:id => 2).first", "Plate.where({:id => 2}).first",
+      "Plate.find_by(id: 2)", "Plate.find_by(:id => 2)", "Plate.find(2)",
+      "Plate.where(id: 2)", "Plate.where(:id => 2)", "Plate.where({:id => 2})"
       @res = true
       Selection.update(2, selected: true)
-    when "Plate.where(id: 2)"
-      @selections.each do |selection|
-        Selection.update(selection.id, selected: false)
-      end
-    when "Plate.where(:id => 2)"
-      @selections.each do |selection|
-        Selection.update(selection.id, selected: false)
-      end
-    when "Plate.where({:id => 2})"
-      @selections.each do |selection|
-        Selection.update(selection.id, selected: false)
-      end
+
+  when "Plate.where({:id => 2})", "Plate.where(id: 2)", "Plate.where({:id=>2})",
+    "Plate.where(id:2)"
       # TODO Select Collection
+      # How to show that a Collection is returned an not a value
     else
       @res = false
     end
