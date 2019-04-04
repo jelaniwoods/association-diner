@@ -18,23 +18,27 @@ class LevelsController < ApplicationController
 
   def results
     @selections = @level.selections
-    @query = cookies[:query]
+    @query = cookies[:query].gsub(/\s+/, "")
     @res = false
+    @collection_returned = false
     # Selected One object
     # Selected Collection
     case @query
-    when "Plate.where(id: 2).first", "Plate.where(id: 2)[0]",
-      "Plate.where(:id => 2).first", "Plate.where({:id => 2}).first",
-      "Plate.find_by(id: 2)", "Plate.find_by(:id => 2)", "Plate.find(2)"
+    when "Plate.where(id:2).first", "Plate.where(id:2)[0]",
+      "Plate.where(:id=>2).first","Plate.where(:id=>2)[0]",
+      "Plate.where({:id=>2})[0]", "Plate.where({:id=>2}).first",
+      "Plate.find_by(id:2)", "Plate.find_by(:id=>2)", "Plate.find(2)",
       @res = true
       Selection.update(2, selected: true)
 
-  when "Plate.where({:id => 2})", "Plate.where(id: 2)", "Plate.where({:id=>2})",
-    "Plate.where(id:2)"
+  when "Plate.where({:id=>2})", "Plate.where(id:2)", "Plate.where({:id=>2})",
+    "Plate.where(id:2)", "Plate.where(:id=>2)"
       # TODO Select Collection
       # Selection.update(1, selected: true)
       # Selection.update(2, selected: true)
       # How to show that a Collection is returned an not a value
+      @collection_returned = true
+      @res = false
     else
       @res = false
     end

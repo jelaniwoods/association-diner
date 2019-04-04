@@ -10,12 +10,12 @@
       <dd><%= level.directions %></dd>
       <div class="">
         <% @selections.each do |selection| %>
+          <%= selection.selected %>
           <% if selection.selected %>
             <div class="<%= selection.item.class.to_s.downcase %> strobe selected">
           <% else %>
             <div class="<%= selection.item.class.to_s.downcase %> strobe">
           <% end %>
-
             <%= selection.item.id %>
           </div>
         <% end %>

@@ -14,10 +14,18 @@
 </div>
 <div class="">
   <h5>Your Query</h5>
-  <%= @query %> was
-  <% if @res %>
+  <p>
+    <%= @query %> was
+    <% if @res %>
     correct!
-  <% else %>
+    <% else %>
     incorrect!
-  <% end %>
+      <% if @collection_returned %>
+        <p>You returned a collection of Plates</p>
+      <% end %>
+    <% end %>
+  </p>
+  <%= link_to "Back", level_path(@level.id) %>
+
+
 </div>
