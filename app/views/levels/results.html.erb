@@ -22,6 +22,7 @@
     incorrect!
       <% if @collection_returned %>
         <p>You returned a collection of Plates</p>
+        <p>Hint: the `where` method <strong>always</strong> returns a collection of rows from the database, even if that collection has one or even zero results.</p>
       <% end %>
     <% end %>
   </p>
