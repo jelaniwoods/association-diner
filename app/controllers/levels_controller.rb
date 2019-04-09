@@ -42,6 +42,8 @@ class LevelsController < ApplicationController
     else
       @res = false
     end
+
+    p @level.matches?(@query)
   end
 
   def store

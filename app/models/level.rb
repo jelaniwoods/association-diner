@@ -13,4 +13,17 @@ class Level < ApplicationRecord
   has_many :queries, dependent: :destroy
   has_many :answers, dependent: :destroy
   has_many :selections, :dependent => :destroy
+
+  def matches?(query)
+    p "MATCHES"
+    answers.each do |answer|
+      p answer.text
+      p query
+      if answer.text == query
+        return true
+      end
+    end
+    false
+  end
+
 end
