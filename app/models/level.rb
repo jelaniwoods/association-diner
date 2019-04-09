@@ -12,6 +12,8 @@
 class Level < ApplicationRecord
   has_many :queries, dependent: :destroy
   has_many :answers, dependent: :destroy
+  has_many :level_items, :dependent => :destroy
+
 
   def matches?(query)
     answers.each do |answer|

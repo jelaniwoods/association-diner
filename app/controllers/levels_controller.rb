@@ -11,10 +11,12 @@ class LevelsController < ApplicationController
   def show
     session[:query] = []
     @query = Query.new
+    @selections = @level.level_items
   end
 
   def results
-    @query = session[:query].last
+    @query = Query.find(session[:query].last["id"])
+    @selections = @level.level_items
     @res = false
     @collection_returned = false
 
@@ -51,6 +53,7 @@ class LevelsController < ApplicationController
   def store
     @query = Query.create(input: params.fetch(:input).gsub(/\s+/, ""), level_id: @level.id)
     session[:query].push @query
+    @query.create_selections
     redirect_to "/levels/#{@level.id}/results", notice: "yup"
   end
 

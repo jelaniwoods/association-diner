@@ -1,0 +1,25 @@
+<tr>
+  <td>
+    <%= level_item.item_id %>
+  </td>
+
+  <td>
+    <%= level_item.level_id %>
+  </td>
+
+  <td>
+    <div class="btn-group">
+      <%= link_to level_item, class: "btn btn-sm btn-outline-secondary" do %>
+        <i class="fas fa-search-plus fa-fw"></i>
+      <% end %>
+
+      <%= link_to edit_level_item_url(level_item), class: "btn btn-sm btn-outline-secondary" do %>
+        <i class="fas fa-edit fa-fw"></i>
+      <% end %>
+
+      <%= link_to level_item, method: :delete, data: { confirm: "Do you really want to delete this level_item?" }, class: "btn btn-sm btn-outline-secondary" do %>
+        <i class="fas fa-trash-alt fa-fw"></i>
+      <% end %>
+    </div>
+  </td>
+</tr>

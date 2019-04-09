@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :level_items
   root "levels#show"
   resources :queries
   resources :answers

@@ -1,19 +1,19 @@
 # == Schema Information
 #
-# Table name: queries
+# Table name: level_items
 #
 #  id         :bigint(8)        not null, primary key
-#  input      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  item_id    :integer
 #  level_id   :integer
 #
 
-class Query < ApplicationRecord
+class LevelItem < ApplicationRecord
+  belongs_to :item, class_name: "Plate"
   belongs_to :level
-  has_many :selections, :dependent => :destroy
 
-  def create_selections
-
+  def selected
+    false
   end
 end
