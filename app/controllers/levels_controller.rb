@@ -4,25 +4,21 @@ class LevelsController < ApplicationController
   # GET /levels
   def index
     @levels = Level.all
+    session[:query] = []
   end
 
   # GET /levels/1
   def show
-    @selections = @level.selections
+    session[:query] = []
     @query = Query.new
-    @selections.each do |selection|
-      Selection.update(selection.id, selected: false)
-    end
-
   end
 
   def results
-    @selections = @level.selections
-    @query = cookies[:query].gsub(/\s+/, "")
+    @query = session[:query].last
     @res = false
     @collection_returned = false
 
-    if @level.matches?(@query)
+    if @level.matches?(@query["input"])
       @res =  true
     else
 
@@ -53,10 +49,11 @@ class LevelsController < ApplicationController
   end
 
   def store
-    @query = params.fetch(:query)
-    cookies[:query] = @query
+    @query = Query.create(input: params.fetch(:input).gsub(/\s+/, ""), level_id: @level.id)
+    session[:query].push @query
     redirect_to "/levels/#{@level.id}/results", notice: "yup"
   end
+
   # GET /levels/new
   def new
     @level = Level.new

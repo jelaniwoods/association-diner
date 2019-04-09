@@ -11,4 +11,6 @@
 
 class Query < ApplicationRecord
   belongs_to :level
+  has_many :selections, :dependent => :destroy
+
 end

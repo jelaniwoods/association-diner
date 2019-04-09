@@ -7,10 +7,10 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  item_id    :integer
-#  level_id   :integer
+#  query_id   :integer
 #
 
 class Selection < ApplicationRecord
   belongs_to :item, class_name: "Plate"
-  belongs_to :level
+  belongs_to :query
 end
