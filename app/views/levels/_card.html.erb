@@ -9,13 +9,13 @@
       <dd><%= level.number %></dd>
       <dd><%= level.directions %></dd>
       <div class="">
-        <% @level.level_items.each do |level_item| %>
-          <% if level_item.selected %>
-            <div class="<%= level_item.item.class.to_s.downcase %> strobe selected">
+        <% @query.selections.each do |selection| %>
+          <% if selection.selected %>
+            <div class="<%= selection.item.class.to_s.downcase %> strobe selected">
           <% else %>
-            <div class="<%= level_item.item.class.to_s.downcase %> strobe">
+            <div class="<%= selection.item.class.to_s.downcase %> strobe">
           <% end %>
-            <%= level_item.item.id %>
+            <%= selection.item.id %>
           </div>
         <% end %>
       </div>

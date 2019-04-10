@@ -16,7 +16,7 @@ class LevelsController < ApplicationController
 
   def results
     @query = Query.find(session[:query].last["id"])
-    @selections = @level.level_items
+    @selections = @query.selections
     @res = false
     @collection_returned = false
 
@@ -46,7 +46,7 @@ class LevelsController < ApplicationController
   #   else
   #     @res = false
   #   end
-
+    @query.select_items
 
   end
 
