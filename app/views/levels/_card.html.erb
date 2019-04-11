@@ -9,7 +9,7 @@
       <dd><%= level.number %></dd>
       <dd><%= level.directions %></dd>
       <div class="">
-        <% @query.selections.each do |selection| %>
+        <% @selections.each do |selection| %>
           <% if selection.selected %>
             <div class="<%= selection.item.class.to_s.downcase %> strobe selected">
           <% else %>

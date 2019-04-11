@@ -26,7 +26,14 @@
       <% end %>
     <% end %>
   </p>
-  <%= link_to "Back", level_path(@level.id) %>
+  <div>
+    <%= link_to "Back", level_path(@level.id) %>
+  </div>
+  <div>
+    <% if !Level.where(id: @level.id + 1).empty? %>
+    <%= link_to "Next Level", level_path(@level.id + 1) %>
+    <% end %>
+  </div>
 
 
 </div>
