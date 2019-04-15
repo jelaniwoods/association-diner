@@ -18,7 +18,7 @@ class LevelsController < ApplicationController
     @query = Query.find(session[:query].last["id"])
 
     @query.select_items
-
+    @evalu = eval(@query.input)
     @selections = @query.selections
     @res = false
     @collection_returned = false
@@ -49,7 +49,7 @@ class LevelsController < ApplicationController
   #   else
   #     @res = false
   #   end
-  
+
 
   end
 
